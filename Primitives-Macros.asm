@@ -1,42 +1,42 @@
 TITLE String Primitives and Macros     (Primitives-Macros.asm)
 
-; Author: Matthew Mazur
-; Last Modified: 8/12/22
-; OSU email address: mazurma@oregonstate.edu
-; Course number/section:   CS271 Section 400
-; Project Number: 6                Due Date: 8/12/22
-; Description: Asks the user for 10 integer values, validates the user-input, converts the user-input values into SDWORDS, then back
-;				to an array of string values. Then calculates the sum and average of the user-entered numbers and displays them to the user.
+; AUTHOR:		Matthew Mazur        
+;
+; DESCRIPTION: 
+;
+;				-Asks the user for 10 integer values
+;				-validates the user-input as a integer
+;				-converts each user-input into a SDWORD and stores them into memory as an array
+;				-converts each value of the SDWORD array into a string and displays this back to the user
+;				-calculates the sum and average of the user-entered integers and displays this back to the user
+;
 
 INCLUDE Irvine32.inc
 
 ; ---------------------------------------------------------------------------------
-; Name: mGetString
+; NAME:				mGetString
 ;
-;		Prompts user for input and stores input as a string to memory
+; FUNCTION:			prompts user for input and stores input as a string to memory
 ;
-; Preconditions: none
+; RECEIVES:
 ;
-; Receives:
-;		*registers*:
+;					*REGISTERS*:
+;						EDX, ECX, EAX
 ;			
-;			EDX, ECX, EAX
-;			
-;		*parameters*:
+;					*PARAMETERS*:
+;						userPrompt		(reference)
+;						BUFFER			(constant)
+;						userInputSize	(reference)
+;						userInput		(reference) 
 ;
-;			userPrompt		(reference)
-;			maxStrLen		(max length of input string, value)
-;			userInputSize	(reference)
-;			userInput		(reference) 
+; RETURNS: 
 ;
-; returns: 
-;
-;			userInputSize		(updated with length of user-input)
-;			userInput			(updated with user-input string)
+;						userInputSize	(updated with length of user-input)
+;						userInput		(updated with user-input string)
 ;		
 ; ---------------------------------------------------------------------------------
 
-mGetString MACRO userPrompt:REQ, maxStrLen:REQ, userInputSize:REQ, userInput:REQ
+mGetString MACRO userPrompt:REQ, BUFFER:REQ, userInputSize:REQ, userInput:REQ
 
 		PUSH	EDX
 		PUSH	ECX
@@ -45,7 +45,7 @@ mGetString MACRO userPrompt:REQ, maxStrLen:REQ, userInputSize:REQ, userInput:REQ
 		MOV		EDX, userPrompt
 		CALL	WriteString
 		MOV		EDX, userInput
-		MOV		ECX, maxStrLen
+		MOV		ECX, BUFFER
 		CALL	ReadString
 		MOV		EDX, userInputSize
 		MOV		[EDX], EAX
@@ -57,18 +57,16 @@ mGetString MACRO userPrompt:REQ, maxStrLen:REQ, userInputSize:REQ, userInput:REQ
 ENDM
 
 ; ---------------------------------------------------------------------------------
-; Name: mDisplayString
+; NAME:				mDisplayString
 ;
-;		Prints a string stored at a specified memory location
+; FUNCTION:			prints a string stored at a specified memory location
 ;
-; Preconditions: none
+; RECEIVES:
+;					*REGISTERS*:
+;						EDX
 ;
-; Receives:
-;		
-;		EDX
-;		displayString (reference to string to display)
-;
-; returns: none
+;					*PARAMETERS:
+;						displayString	(reference)
 ;
 ; ---------------------------------------------------------------------------------
 
@@ -84,57 +82,52 @@ mDisplayString	MACRO	displayString:REQ
 
 ENDM
 
-		SDWORD_MAX_VAL		=	2147483647
-		SDWORD_MIN_VAL		=	-2147483648
-		MAX_USER_INPUT		=	13			;max input is 11
-		TOO_BIG_INPUT_SIZE	=	12
+		MAX_INPUT_SIZE		=	12
+		BUFFER				=	20
 		NUM_USER_INPUTS		=	10
 		HEX_NUM_0			=	30h
 		HEX_NUM_9			=	39h
-		NUM_1				=	1
-		NUM_10				=	10
 		HEX_TO_DEC			=	30h
-		ZERO				=	0
-		ONE					=	1 
-
 
 .data
 		endMessage			BYTE	"Thanks for playing!",0
 		sumMessage			BYTE	"The sum of the numbers is: ",0
 		avgMessage			BYTE	"The truncated average is: ",0
 		displayMessage		BYTE	"You entered the following numbers:",13,10,0
-		userArrIndex		DWORD	0
-		positiveSign		BYTE	"+",0
-		negSign				BYTE	"-",0
-		tryAgain			BYTE	"Please try again: ",0
 		errorMessage		BYTE	"ERROR: You did not enter a signed number or your number was too big.",0
-		programHeader		BYTE	"Project 6: String Primitives and Macros",13,10,"Written By: Matthew Mazur",13,10,13,10,0
+		programHeader		BYTE	"String Primitives and Macros",13,10,"Written By: Matthew Mazur",13,10,13,10,0
 		programInstructions	BYTE	"Please provide 10 signed decimal integers.",13,10,"Each number needs to be small enough to fit inside a 32-bit register.",13,10,"After you have finished inputting the raw numbers I will display a list of the integers, their sum, ",13,10,"and their average value.",13,10,13,10,0
 		userPrompt			BYTE	"Please enter a signed number: ",0
+		tryAgain			BYTE	"Please try again: ",0
+		positiveSign		BYTE	"+",0
+		negSign				BYTE	"-",0
+		userArrIndex		DWORD	0
 		userInputSize		DWORD	?
 		userArr				SDWORD	10 DUP(0)
-		userInput			BYTE	13 DUP(0)
 		userArrType			DWORD	TYPE userArr
 		newArrValue			SDWORD	?
+		userInput			BYTE	?
+		displayString		BYTE	?
+		memorySDWORD		SDWORD	?
+		sum					SDWORD	?
+		average				SDWORD	?
 
 .code
 main PROC
 
-		;display programHeader
-		PUSH		OFFSET programInstructions
-		PUSH		OFFSET programHeader
-		CALL		DisplayHeader
+		;display header and instructions to user
+		mDisplayString	OFFSET programHeader
+		mDisplayString	OFFSET programInstructions
 
-		;set loop-counter to NUM_USER_INPUTS 
+		;set loop-counter to number of user-inputs
 		MOV			ECX, NUM_USER_INPUTS
 
 _callReadVal:
-		;loop through ReadVal 'NUM_USER_INPUTS' times, with resultant array of SDWORDs in userArr
+		;collect and validate user-input, then store each value to memory as an array named 'userArr'
 		PUSH	OFFSET positiveSign
 		PUSH	OFFSET newArrValue
 		PUSH	OFFSET userArrType
 		PUSH	OFFSET userArrIndex
-		PUSH	NUM_10
 		PUSH	OFFSET negSign
 		PUSH	OFFSET userArr
 		PUSH	OFFSET tryAgain
@@ -145,127 +138,100 @@ _callReadVal:
 		CALL	ReadVal	
 		LOOP	_callReadVal
 
-		;set loop-counter to NUM_USER_INPUTS
-		MOV		ECX, NUM_USER_INPUTS
-		;add whitespace
+		;set loop-counter to number of user-inputs and display 'displayMessage' to user
 		CALL	Crlf
+		MOV		ECX, NUM_USER_INPUTS
+		mDisplayString	OFFSET displayMessage
+
+		;point EAX to the first element of 'userArr'
+		PUSH	EAX
+		MOV		EAX, OFFSET userArr
 
 _callWriteVal:
-		;loop through WriteVal 'NUM_USER_INPUTS' times, displaying the SDWORD as a string of ASCII characters for each pass
-		PUSH	OFFSET userArrType
-		PUSH	OFFSET displayMessage
-		PUSH	OFFSET userArr
-
+		;convert element of 'userArr' into an array of ASCII characters and display to the user
+		PUSH	OFFSET displayString
+		PUSH	OFFSET negSign
+		PUSH	EAX
 		CALL	WriteVal
-		LOOP	_callWriteVal
 
-		;calculate and display sum and average of userArr values
-		PUSH	OFFSET sumMessage
-		PUSH	OFFSET avgMessage
+		;increment EAX to point to next element of 'userArr' and loop to _callWriteVal to display the next element
+		ADD		EAX, 4
+		LOOP	_callWriteVal
+		POP		EAX
+		CALL	Crlf
+
+		;calculate sum and average and store them in memory
+		PUSH	OFFSET average
+		PUSH	OFFSET sum
 		PUSH	OFFSET userArrType
 		PUSH	OFFSET userArr
-		CALL	Average
+		CALL	SumAverage
 
-		;display endMessage
-		PUSH	OFFSET endMessage
-		CALL	FinalMessage
+		;display sum
+		mDisplayString	OFFSET sumMessage
+		CALL	Crlf
+		PUSH	OFFSET displayString
+		PUSH	OFFSET negSign
+		PUSH	OFFSET sum
+		CALL	WriteVal
+		CALL	Crlf
+
+		;display average
+		mDisplayString	OFFSET avgMessage
+		CALL	Crlf
+		PUSH	OFFSET displayString
+		PUSH	OFFSET negSign
+		PUSH	OFFSET average
+		CALL	WriteVal
+		CALL	Crlf
+
+		;display 'endMessage'
+		mDisplayString	OFFSET endMessage
 
 	Invoke ExitProcess,0	
 
 main ENDP
 
 ; --------------------------------------------------------------------------------- 
-; Name: DisplayHeader
+; NAME:					ReadVal
 ;  
-;		Displays program header
-; 
-; Preconditions: none
+; FUNCTION:				uses mGetString to get a user input, validates that the input is an integer,
+;						then converts this string to a SDWORD and saves to 'userArr'
 ;
-; Postconditions: none
-;
-; Receives: 
+; RECEIVES: 
 ;		
-;		*registers*:		
-;			
-;			EDX, EBP
+;						*REGISTERS*:		
+;							EBP, EDX, ESI, EBX, EDI, EAX, ECX
+;
+;						*CONSTANTS* (not pushed on stack):
+;							HEX_TO_DEC
+;							NUM_USER_INPUTS		
+;							HEX_NUM_0		
+;							HEX_NUM_9
+;							MAX_INPUT_SIZE
 ;		
-;		*pushed on stack*
-;
-;			programHeader		(reference) 
-;			programInstructions (reference)
+;						*PUSHED ON STACK*
+;							positiveSign		(reference)	[EBP+48]
+;							newArrValue			(reference)	[EBP+44]
+;							userArrType			(reference) [EBP+40]
+;							userArrIndex		(reference) [EBP+36]
+;							negSign				(reference)	[EBP+32]
+;							userArr				(reference) [EBP+28]
+;							tryAgain			(reference) [EBP+24]
+;							errorMessage		(reference) [EBP+20]
+;							userPrompt			(reference) [EBP+16]
+;							userInputSize		(reference) [EBP+12]
+;							userInput			(reference) [EBP+8]
 ;		
-; Returns: none
-; --------------------------------------------------------------------------------- 
-
-DisplayHeader PROC	USES EBP EDX
-
-	;assign static stack-frame pointer
-	MOV		EBP, ESP
-
-	;display programHeader
-	MOV		EDX, [EBP+12]
-	CALL	WriteString
-	MOV		EDX, [EBP+16]
-	CALL	WriteString
-
-	;return to calling-procedure
-	RET		8
-
-displayHeader ENDP
-
-; --------------------------------------------------------------------------------- 
-; Name: ReadVal
-;  
-;		Uses mGetString to get a user input, validates that input can be read as a SDWORD,
-;		continues to prompt user until a valid string is entered, then converts this string to a 
-;		SDWORD and saves to userArr
+; RETURNS: 
 ;
-; Preconditions: none
-; 
-; Postconditions: none
-;
-; Receives: 
-;		
-;		*registers*:		
-;
-;			EBP, EDX, ESI, EBX, EDI, EAX, ECX
-;
-;		*constants, not pushed to stack*
-;			
-;			HEX_TO_DEC
-;			MAX_USER_INPUT	
-;			NUM_USER_INPUTS
-;			NUM_1			
-;			HEX_NUM_0		
-;			HEX_NUM_9
-;			TOO_BIG_INPUT_SIZE
-;			ZERO
-;			ONE
-;		
-;		*pushed on stack*
-;
-;			positiveSign		(reference)	[EBP+52]
-;			newArrValue			(reference)	[EBP+48]
-;			userArrType			(reference) [EBP+44]
-;			userArrIndex		(reference) [EBP+40]
-;			NUM_10				(constant, pushed on stack as value) [EBP+36]
-;			negSign				(reference)	[EBP+32]
-;			userArr				(reference) [EBP+28]
-;			tryAgain			(reference) [EBP+24]
-;			errorMessage		(reference) [EBP+20]
-;			userPrompt			(reference) [EBP+16]
-;			userInputSize		(reference) [EBP+12]
-;			userInput			(reference) [EBP+8]
-;		
-; Returns: 
-;
-;			userArr				(contains new value at index passed by stack)
-;			userArrIndex		(incremented to the next index of userArray to be populated)
+;							userArr				(contains new value at index passed by stack)
+;							userArrIndex		(incremented to the next index of userArray to be populated)
 ; --------------------------------------------------------------------------------- 
 
 ReadVal		PROC	USES EDX ESI EBX EDI EAX ECX
 
-			LOCAL	isNeg:BYTE
+			LOCAL	isNeg:BYTE, isPos:BYTE
 
 		JMP			_callmGetString
 
@@ -282,14 +248,12 @@ _error:
 		MOV			EDX, [EBP+20]
 		CALL		WriteString
 		CALL		Crlf
-
-		mGetString	[EBP+24], MAX_USER_INPUT, [EBP+12], [EBP+8]
-
+		mGetString	[EBP+24], BUFFER, [EBP+12], [EBP+8]
 		JMP			_validateLength
 
 _callmGetString:
 		;call mGetString
-		mGetString	[EBP+16], MAX_USER_INPUT, [EBP+12], [EBP+8]
+		mGetString	[EBP+16], BUFFER, [EBP+12], [EBP+8]
 
 _validateLength:
 		;set loop-counter to length of userInput
@@ -297,16 +261,17 @@ _validateLength:
 		MOV			ECX, [EDI]
 
 		;check if length of user input is less than or equal to the max length, also check if it is 0
-		MOV			EDI, TOO_BIG_INPUT_SIZE
-		MOV			ESI, [EBP+12]	;userInputSize in ESI
+		MOV			EDI, MAX_INPUT_SIZE
+		MOV			ESI, [EBP+12]	
 		CMP			EDI, [ESI]
-		JE			_error
-		MOV			EDI, ZERO
+		JL			_error
+		MOV			EDI, 0
 		CMP			EDI, [ESI]
 		JE			_error
 
 		;if the length is 1 we check that it is a integer
-		CMP			EDI, ONE
+		MOV			EDI, 1
+		CMP			EDI, [ESI]
 		JE			_oneEntry
 		JMP			_validateNeg
 
@@ -330,14 +295,15 @@ _validateNeg:
 		MOV			EDX, [EBP+32]	;address of negSign in edx
 		CMP			AL, [EDX]		;compare first character of userInput to negSign
 		JNE			_checkPositiveSign
-		MOV			isNeg, NUM_1
+		MOV			isNeg, 1
 		LOOP		_nextByte		;loop to ESI to point ESI to next character in userInput
 
 _checkPositiveSign:
 		;address of positiveSign in EDX
-		MOV			EDX, [EBP+52]
+		MOV			EDX, [EBP+48]
 		CMP			AL, [EDX]		;compare first character of userInput to positiveSign
 		JNE			_checkIsDigit
+		MOV			isPos, 1
 		LOOP		_nextByte		;loop to _nextByte to point ESI to next character in userInput
 
 _nextByte:
@@ -359,269 +325,234 @@ _validated:
 		MOV			EDI, [EBP+12]
 		MOV			ECX, [EDI]
 
-		;set EAX to 0 and EBX to 0, which will be used to accumulate the numerical value of userInput
+		;set EAX to 0, which will be used to accumulate the numerical value of userInput
 		MOV			EAX, 0
-		MOV			EBX, 0
 
 		;set ESI to address of first character of userInput
 		MOV			ESI, [EBP+8]
 
-		;check if the userInput was negative, if so increment ESI to next element in the userInput
-		CMP			isNeg, NUM_1
-		JNE			_convertToNum
+		;check if the userInput has a negative or positive sign, if so decrement loop counter 
+		CMP			isNeg, 1
+		JE			_inc
+		CMP			isPos, 1
+		JE			_inc
+		JMP			_convertToNum
+
+_inc:
 		INC			ESI			
 		LOOP		_convertToNum
 
 _convertToNum:
-		;move current element of userInput into BL
-		MOV			BL, [ESI]	
-
-		;point ESI to next character in userInput
-		INC			ESI			
-
-		;subtract 30 from BL to get integer value of character
-		SUB			BL, HEX_TO_DEC		
+		
+		;convert userInput to SDWORD
+		CMP			EBX, EBX		;clear overflow flag and EBX
+		MOV			EBX, 0
+		MOV			BL, [ESI]		;move current element of userInput into BL
+		INC			ESI				;point ESI to next character in userInput
+		SUB			BL, HEX_TO_DEC	;subtract 30 from BL to get integer value of character
 
 		;multiply current value in EAX by 10 and add to EBX
-		MUL			DWORD PTR [EBP+36]
+		;error is raised if overflow has occured, i.e. user entered too big or too small of a value to represent as a SDWORD
+		MOV			EDX, 10
+		IMUL		EDX
+		JO			_error
 		ADD			EBX, EAX
+		JO			_error
 
 		;we put our accumulated value in EAX to be multiplied by 10 during the next loop
 		MOV			EAX, EBX
 		LOOP		_convertToNum
-
-		MOV			EDI, [EBP+48]	;address of newArrValue in EDI
+		MOV			EDI, [EBP+44]	;address of newArrValue in EDI
 		MOV			[EDI], EAX
 
 		;if the entered value was negative we convert EAX to negative
-		CMP			isNeg, NUM_1
+		CMP			isNeg, 1
 		JNE			_writeToArr
 		NEG			SDWORD PTR [EDI]
 
 _writeToArr:
+		;save the SDWORD in userArr
 		MOV			ESI, [EDI]		;SDWORD to be added to array in ESI
 		MOV			EBX, [EBP+28]	;address of index 0 of userArr into EBX
-		MOV			EDI, [EBP+40]	;address of userArrIndex in EDI
+		MOV			EDI, [EBP+36]	;address of userArrIndex in EDI
 		ADD			EBX, [EDI]		;add userArrIndex to point to correct index of userArr
 		MOV			ECX, ESI
 		MOV			[EBX], ECX		;move new SDWORD into correct index of userArr
-		MOV			EDI, [EBP+44]	;move address of userArrType to EDI
+		MOV			EDI, [EBP+40]	;move address of userArrType to EDI
 		MOV			EDI, [EDI]
-		MOV			EDX, [EBP+40]	;address of userArrIndex in EDX
+		MOV			EDX, [EBP+36]	;address of userArrIndex in EDX
 		ADD			[EDX], EDI		;add userArrType to userArrIndex
+		MOV			isNeg, 0		;set isNeg and isPos to 0 for next input
+		MOV			isPos, 0
 
-		MOV			isNeg, 0		;set isNeg to 0 for next input
-
-		RET			48
-
+		RET			44
 ReadVal ENDP
 
 ; --------------------------------------------------------------------------------- 
-; Name: WriteVal
+; NAME:			WriteVal
 ;  
-;		Converts an array of numeric SDWORD values to a string of ASCII characters representing their values,
-;		and displays the output to the user using mDisplayString
-; 
-; Preconditions: 
-;		
-;		userArr has an array of SWORD values
-; 
-; Postconditions:
-;		
-;		none
+; FUNCTION:		Converts a numeric SDWORD value to a string of ASCII characters representing their values,
+;				and displays the string to the user using mDisplayString
 ;
-; Receives: 
-;		*registers*:
-;		
-;			EDX ESI EBX EDI EAX ECX
+; RECEIVES: 
 ;
-;		*constants, not pushed to stack*:
-;			
-;			NUM_USER_INPUTS
+;				*REGISTERS*:
+;					EDX ESI EBX EDI EAX ECX
 ;
-;		*pushed to stack*:
-;
-;			newArrValue			(reference) [EBP+20]
-;			userArrType			(reference) [EBP+16]
-;			displayMessage		(reference)	[EBP+12]
-;			userArr				(reference) [EBP+8]
-;
-;
-;		
-; Returns: 
+;				*PUSHED TO STACK*:
+;					displayString		(reference) [EBP+16]
+;					negSign				(reference) [EBP+12]
+;					SDWORD				(reference) [EBP+8]		*this is the address of the SDWORD that should be converted to ASCII and displayed
 ; --------------------------------------------------------------------------------- 
 
-WriteVal	PROC	USES EDX ESI EBX EDI EAX ECX
+WriteVal	PROC	USES EDX ESI EDI EAX ECX
 		
 		LOCAL	isNeg:BYTE
 
 		;clear registers 
 		MOV			EDX, 0
 		MOV			ESI, 0
-		MOV			EBX, 0
 		MOV			EDI, 0
 		MOV			EAX, 0
 		MOV			ECX, 0
 
-		;display displayMessage
-		MOV			EDX, [EBP+12]
-		CALL		WriteString
-		CALL		Crlf
+		;address of 'displayString' in EDI
+		MOV			EDI, [EBP+16]
 
-		;set direction flag to decrement
-		;STD
+		;value of 'SDWORD' into EAX
+		MOV			EAX, [EBP+8]
+		MOV			EAX, [EAX]
 
-		;for first index EAX is NUM_USER_INPUTS - 1 
-		MOV			EAX, NUM_USER_INPUTS
-		DEC			EAX
-		JMP			_displayIndex
+		;10 will be divisor, put this in ESI
+		MOV			ESI, 10
 
-		;decrement EAX by userArrType
-		MOV			ESI, [EBP+16]
-		MOV			ESI, [ESI]
-		SUB			EAX, ESI
+		;ECX will be the counter of the digits in 'SDWORD'
+		MOV			ECX, 0
+		
+		;if 'SDWORD' is negative set 'isNeg' to 1
+		TEST		EAX, EAX
+		JNS			_divide
+		MOV			isNeg, 1
+		NEG			EAX
 
-_displayIndex:
-		;set EAX to value of current byte
-		MOV			EAX, userArr[EAX]
+_divide:
+		;increment number of digits counted
+		INC			ECX			
 
-		;add 30 to convert to ASCII
-		ADD			EAX, 30d
+		CDQ
+		IDIV		ESI
 
+		;remainder is pushed to stack
+		PUSH		EDX
+		MOV			EDX, 0
 
-		;set EDX to address of newArrValue
-		MOV			EDX, [EBP+20]
-		;MOV			
+		;if quotient is not 0, we jump to divide and keep dividing
+		CMP			EAX, 0
+		JE			_done
+		JMP			_divide
 
-		;add 30 to get the decimal value
-		ADD			ESI, 30d
+_done:
+		CMP			isNeg, 1
+		JNE			_display
+		
+		;add 'negSign' to 'displayString'
+		MOV			EDX, 0
+		MOV			EAX, [EBP+12]
+		MOV			DL, [EAX]
+		MOV			[EDI], EDX
+		INC			EDI
 
+_display:
+		POP			ESI
+		ADD			ESI, HEX_TO_DEC
+		MOV			[EDI], ESI
+		INC			EDI
+		LOOP		_display
 
+		;add a 0-terminator to 'displayString'
+		MOV			ESI, 0
+		MOV			[EDI], ESI
 
+		mDisplayString	[EBP+16]
+
+		;revert isNeg to 0
+		MOV			isNeg,0
 
 		RET			12
-
 WriteVal ENDP
 
 ; --------------------------------------------------------------------------------- 
-; Name: Average
+; NAME:			SumAverage
 ;  
-;		Loops through the array of SDWORDS and calculates the sum and the truncated average. Then displays these values to the
-;		user.
+; FUNCTION:		Loops through the array of SDWORDS and calculates the sum and the truncated average. Stores the sum and average to memory.
 ;
-; Preconditions: 
+; PRE-CONDITIONS: 
 ;		
-;		userArray is populated with SDWORD values
+;				-userArray is populated with SDWORD values
 ;
-; 
-; Postconditions: none
-;
-; Receives: 
+; RECEIVES: 
 ;		
-;		*registers*:		
+;				*REGISTERS*:		
+;					EBP, EDX, ESI, EBX, EDI, EAX, ECX
 ;
-;			EBP, EDX, ESI, EBX, EDI, EAX, ECX
-;
-;		*constants, not pushed to stack*
-;
-;			MAX_USER_INPUT	
-;			NUM_USER_INPUTS
+;				*CONSTANTS (not pushed to stack)*
+;					MAX_INPUT_SIZE	
+;					NUM_USER_INPUTS
 ;		
-;		*pushed on stack*
+;				*PUSHED TO STACK*
+;					average				(reference)	[EBP+44]
+;					sum					(reference)	[EBP+40]
+;					userArrType			(reference) [EBP+36]
+;					userArr				(reference) [EBP+32]
 ;
-;			sumMessage			(reference) [EBP+20]
-;			avgMessage			(reference) [EBP+16]
-;			userArrType			(reference) [EBP+12]
-;			userArr				(reference) [EBP+8]
+; RETURNS:		
+;				sum		(populated with the sum of the numbers in userArr)
+;				average (populated with the average of the numbers in userArr)
 ;		
-; Returns: 
-;
-;			none
-;
 ; --------------------------------------------------------------------------------- 
-Average		PROC	USES EDX ESI EBX EDI EAX ECX
 
-			LOCAL	sum:SDWORD
+SumAverage	PROC	USES EBP EDX ESI EBX EDI EAX ECX
+
+			;assign static stack-frame pointer
+			MOV		EBP, ESP
 
 			;set ECX to NUM_USER_INPUTS
 			MOV		ECX, NUM_USER_INPUTS
 
 			;set ESI to value of userArrType
-			MOV		ESI, [EBP+12]
+			MOV		ESI, [EBP+36]
 			MOV		ESI, [ESI]
+
+			;address of first element of userArr in EDX
+			MOV		EDX, [EBP+32]
 
 			;set EBX EAX to 0
 			MOV		EBX, 0
 			MOV		EAX, 0
 
 _addVal:
-			;set first value of userArr into EAX
-			ADD		EAX, userArr[EBX]
+			;set value of userArr into EAX
+			ADD		EAX, [EDX]
 
-			;increment EBX to next value in userArr
-			ADD		EBX, ESI
+			;increment EDX to next value in userArr
+			ADD		EDX, ESI
 			LOOP	_addVal
 
-			;display the sum
-			MOV		EDX, [EBP+20]
-			CALL	WriteString
-			CALL	WriteInt
-			CALL	Crlf
+			;store sum
+			MOV		EBX, [EBP+40]
+			MOV		[EBX], EAX
 
 			;divide sum by NUM_USER_INPUTS to get the truncated average
 			MOV		ESI, NUM_USER_INPUTS
 			CDQ
 			IDIV	ESI
 
-			;display the ave
-			MOV		EDX, [EBP+16]
-			CALL	WriteString
-			CALL	WriteInt
-			CALL	Crlf
+			;store the truncated average
+			MOV		EBX, [EBP+44]
+			MOV		[EBX], EAX
 
-			RET		16
+			RET		20
 
-
-
-Average		ENDP
-
-; --------------------------------------------------------------------------------- 
-; Name: FinalMessage
-;  
-;		Displays the endMessage
-;
-; Preconditions: none
-; 
-; Postconditions: none
-;
-; Receives: 
-;		
-;		*registers*:		
-;
-;			EDX
-;		
-;		*pushed on stack*
-;
-;			endMessage			(reference) [EBP+8]
-;		
-; Returns: 
-;
-;			none
-;
-; --------------------------------------------------------------------------------- 
-
-FinalMessage		PROC USES EDX
-
-	;assign static stack-frame pointer
-	MOV		EBP, ESP
-
-	;display endMessage
-	MOV		EDX, [EBP+8]
-	CALL	WriteString
-
-	RET		4
-
-FinalMessage	ENDP
-
+SumAverage		ENDP
 
 END main
