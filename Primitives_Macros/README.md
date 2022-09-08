@@ -1,5 +1,4 @@
 <h1>String Primitives and Macros</h1>
-<li>
 <ul>
 <li>Asks the user for 10 integer values</li>
 <li>Validates the user-input value as an integer</li>
