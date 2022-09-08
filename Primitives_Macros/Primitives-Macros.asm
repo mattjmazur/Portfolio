@@ -5,7 +5,7 @@ TITLE String Primitives and Macros     (Primitives-Macros.asm)
 ; DESCRIPTION: 
 ;
 ;				-Asks the user for 10 integer values
-;				-validates the user-input as a integer
+;				-validates the user-input value as an integer
 ;				-converts each user-input into a SDWORD and stores them into memory as an array
 ;				-converts each value of the SDWORD array into a string and displays this back to the user
 ;				-calculates the sum and average of the user-entered integers and displays this back to the user
