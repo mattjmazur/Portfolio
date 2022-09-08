@@ -1,10 +1,8 @@
-# Portfolio
-a collection of projects displaying my software development skills
-
-
-<h2>String Primitives and Macros (Primitives-Macros.asm)</h2>
+<h1>Software Developer Portfolio</h1>
+<p>This repository contains projects showcasing my development skills</p>
+<h2>String Primitives and Macros</h2>
 <ul>
-  <li>Uses low-level string processing to obtain and validate 10 integers from the user</li>
-  <li>Converts and stores the user-input strings as their numeric value in an array</li>
-  <li>Displays the integers, their sum, and their average</li>
+  <li>This is a project I worked on during my computer architecture course</li>
+  <li>The program uses assembly language to process and transform strings to integers and vice versa</li>
+  <li>Uses x86 MASM, and devloped in Visual Studio 2019</li>
 </ul>
