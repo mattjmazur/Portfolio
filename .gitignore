@@ -3,3 +3,4 @@ exercise_tracking_app/exercises-ui/.DS_Store
 exercise_tracking_app/exercises_API/node_modules
 .DS_Store
 exercise_tracking_app/exercises-ui/node_modules
+.env
