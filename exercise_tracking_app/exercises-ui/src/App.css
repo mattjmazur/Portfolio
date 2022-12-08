@@ -1,0 +1,132 @@
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(232, 243, 214); 
+  margin: 10px;
+  padding: 10px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(86, 82, 98);
+}
+
+td, th {
+  border: 1px solid rgb(252, 249, 190);
+}
+
+tr:nth-child(even){background-color: rgb(252, 249, 190);}
+
+tr:hover {background-color: rgb(252, 249, 190);}
+
+th {
+  text-align: left;
+  background-color: #FCF9BE;
+  color: rgb(86, 82, 98);;
+}
+
+tr th {
+  border-color: #FCF9BE;
+  border-style: solid;
+  border-width: thick;
+  padding: 10px;
+}
+
+tr td {
+  border-color: rgb(232, 243, 214); ;
+
+  padding: 10px;
+}
+
+input  {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+select {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#header {
+  font-size: large;
+  background-color: rgb(252, 249, 190);
+  -webkit-transform:scale(0.8);
+-moz-transform:scale(0.8);
+-ms-transform:scale(0.8);
+transform:scale(0.8);
+border-radius: 15px;
+padding: 10px;
+}
+
+#edit-exercise {
+  text-align: left;
+  font-size: large;
+  color: rgb(86, 82, 98);
+  border-radius: 10px;
+}
+
+table {
+  padding: 0px;
+}
+
+footer {
+  padding: 20px;
+  font-size: x-small;
+}
+
+#links {
+  font-size: larger;
+  font-weight: bolder;
+  padding: 5px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+#title {
+  color:rgb(86, 82, 98);
+  font-size: xxx-large;
+}
+
+#header-hr {
+  height:2px;
+  border-width:0;
+  color: #565262;
+  background-color:black;
+  padding: 0;
+  width: 50%;
+}
+
+
+h2 {
+  margin: 0;
+}
+
+#directions-list {
+  text-align: left;
+}
+
+#links:link, #links:visited {
+  background-color: #F7A4A4;
+  color: rgb(86, 82, 98);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 10px;
+  font-size:medium;
+}
+
+#links:hover, #links:active {
+  background-color: rgba(246, 72, 72, 0.835)
+}
