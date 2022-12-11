@@ -206,7 +206,7 @@ class HashMap:
         return return_arr
 
 
-def find_mode(da: DynamicArray) -> (DynamicArray, int):
+def find_mode(da: DynamicArray) -> tuple(DynamicArray, int):
     """
     returns a tuple containing a DynamicArray comprising the mode of 'da', and the integer value of the mode
     """
