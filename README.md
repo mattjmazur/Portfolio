@@ -3,7 +3,7 @@
 <h2>exercise_tracking_app</h2>
 <ul>
   <li>uses the MERN stack to create a web-app </li>
-  <li>The web-app allows the user to track exercises by creating, editing, and deleting entries in an exercise-tracking table</li>
+  <li>The web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
   <li>To view the project locally, after the files are downloaded, run 'npm install' in the downloaded folder</li>
   <ul>
   <li>Run 'npm start' in the 'exercises_API' folder</li>
