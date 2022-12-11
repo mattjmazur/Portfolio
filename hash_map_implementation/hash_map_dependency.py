@@ -1,10 +1,9 @@
-# Course:      CS261 - Data Structures
-# Assignment:  6
-# Description: Provided data structures necessary to complete the assignment.
-#              Please look through this file carefully to see what methods
-#              are available and how they're implemented.
-#              Don't modify the contents of this file.
-
+"""
+This file contains classes that are used for the implementation of 
+the separate-chaining hashmap and the open-addressing hashmap. This
+file was not written by me, but was included in the assignment prompt 
+to help write the hashmap implementations.
+"""
 
 # -------------- Used by both HashMaps (SC & OA)  -------------- #
 
