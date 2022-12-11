@@ -1,4 +1,4 @@
-ludo_game assignment prompt 
+#ludo_game assignment prompt 
 
 For this project you will write a class called LudoGame that allows two to four people to play a simplified version of the game (https://en.wikipedia.org/wiki/Ludo_(board_game)).
 
