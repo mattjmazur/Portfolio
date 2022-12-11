@@ -1,5 +1,5 @@
 <h1>Software Developer Portfolio</h1>
-<p>This repository contains projects showcasing my development skills</p>
+<p>Each folder in this repository contains projects showcasing my development skills. The projects were all completed as part of my Bachelor's in Computer Science coursework.</p>
 <h2>exercise_tracking_app</h2>
 <ul>
   <li>This project uses the MERN stack to create a web-app </li>
@@ -14,6 +14,6 @@
 <h2>ludo_game</h2>
 <h2>primitives_macros</h2>
 <ul>
-  <li>This program uses assembly language to process and transform strings to integers and vice versa</li>
-  <li>Uses x86 MASM, and devloped in Visual Studio 2019</li>
+  <li>uses assembly language to process and transform strings to integers and vice versa</li>
+  <li>developed in x86 MASM</li>
 </ul>
