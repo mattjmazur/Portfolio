@@ -1,6 +1,10 @@
 <h1>hashmap_implementation</h1>
 <ul>
-<li>includes two implementations of a hashmap abstact data type: one using separate-chaining collision resolution (hashmap_sc.py) and the other using open-addressing collison resolution (hashmap_oa.py)</li>
+  <li>includes two implementations of a hashmap abstact data type:</li>
+  <ol>
+  <li>using separate-chaining collision resolution (hashmap_sc.py)</li>
+  <li>using open-addressing collison resolution (hashmap_oa.py)</li>
+  </ol>
 <li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (PDF of prompt included in the folder)</li>
 <li>highlighted skills/technologies: python, efficient implementation of abstract data types, object-oriented programming</li>
 </ul>
