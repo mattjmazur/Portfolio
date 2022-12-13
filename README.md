@@ -8,10 +8,19 @@
 </ul>
 <h2>hash_map_implementation</h2>
 <ul>
-<li>includes two implementations of a hashmap abstact data type: one using separate-chaining collision resolution and the other using open-addressing collison resolution</li>
-<li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (PDF of prompt included in the folder)</li>
-<li>highlighted skills/technologies: python, efficient implementation of abstract data types, object-oriented programming</li>
+  <li>includes two implementations of a hashmap abstact data type:</li>
+  <ol>
+  <li>using separate-chaining collision resolution (hashmap_sc.py)</li>
+  <li>using open-addressing collison resolution (hashmap_oa.py)</li>
+  </ol>
+<li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
 </ul>
+<h4>highlighted skills/technologies:</h4>
+<ul>
+  <li>python</li>
+  <li>implementation of abstract data types</li>
+  <li>object-oriented programming</li>
+  </ul>
 <h2>ludo_game</h2>
 <ul>
 <li>uses python to implement a representation of the game 'ludo'</li>
