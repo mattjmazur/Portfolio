@@ -4,3 +4,4 @@
 <li>this project focused on cementing the fundamentals of object-oriented design</li>
 <li>highlighted skills/technologies: python, object-oriented design, documentation/clean code</li>
 </ul>
+<em><b>please see 'ludo_game_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
