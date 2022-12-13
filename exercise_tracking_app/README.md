@@ -5,7 +5,9 @@
 </ul>
 <em>highlighted skills/technologies:</em> node.js, express.js, react, mongoDB, HTML/CSS
 
+
 <b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</b>
+
 
 <h2>How to run the project locally:</h2>
   <ol>
