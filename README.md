@@ -16,12 +16,8 @@
   </ol>
 <li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
 </ul>
-<em>highlighted skills/technologies:</em>
-<ul>
-  <li>python</li>
-  <li>implementation of abstract data types</li>
-  <li>object-oriented programming</li>
-  </ul>
+<p><em>highlighted skills/technologies:</em> python, implementation of abstract data type, object-oriented programming</p>
+
 <h2>ludo_game</h2>
 <ul>
 <li>uses python to implement a representation of the game 'ludo'</li>
