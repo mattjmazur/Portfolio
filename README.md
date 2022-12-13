@@ -5,16 +5,13 @@
   <li>uses the MERN stack to create a web-app </li>
   <li>the web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
 </ul>
-<small>
-<h4>highlighted skills/technologies:</h4>
-<ul>
+<em>highlighted skills/technologies:</em>
 <li>node.js</li>
 <li>express.js</li>
 <li>react</li>
 <li>mongoDB</li>
 <li>HTML, CSS</li>
-</ul>
-</small>
+
 <h2>hash_map_implementation</h2>
 <ul>
   <li>includes two implementations of a hashmap abstact data type:</li>
