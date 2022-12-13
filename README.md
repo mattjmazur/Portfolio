@@ -29,5 +29,5 @@
 <h2>primitives_macros</h2>
 <ul>
   <li>uses assembly language to process and transform strings to integers and vice versa</li>
-  <li>highlighted skills/technologies: x86 MASM, low-level computer knowledge and programming</li>
 </ul>
+<p><em>highlighted skills/technologies:</em> x86 MASM, low-level computer knowledge and programming</p>
