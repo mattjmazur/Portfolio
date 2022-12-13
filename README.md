@@ -1,5 +1,6 @@
 <h1>Software Developer Portfolio</h1>
 <p>Each folder in this repository contains a project showcasing my development skills. The projects were all completed as part of my Bachelor's in Computer Science coursework. Each project folder contains a PDF of the assignment prompt for the project.</p>
+
 <h2>exercise_tracking_app</h2>
 <ul>
   <li>uses the MERN stack to create a web-app </li>
@@ -22,8 +23,9 @@
 <ul>
 <li>uses python to implement a representation of the game 'ludo'</li>
 <li>this project focused on cementing the fundamentals of object-oriented design</li>
-<li>highlighted skills/technologies: python, object-oriented design, documentation/clean code</li>
 </ul>
+<p><em>highlighted skills/technologies:</em> python, object-oriented design, documentation/clean code</p>
+
 <h2>primitives_macros</h2>
 <ul>
   <li>uses assembly language to process and transform strings to integers and vice versa</li>
