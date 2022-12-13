@@ -6,12 +6,12 @@
 </ul>
 <br>
 <h2>How to run the project locally:</h2>
-  <ul>
-  <li>after the files are downloaded run 'npm install' in the downloaded folder</li>
-  <ul>
+  <ol>
+  <li>download 'exercise_tracking_app' folder</li>
   <li>run 'npm start' in the 'exercises_API' folder</li>
   <li>run 'npm start' in the 'exercises_UI' folder</li>
-  </ul>
+  </ol>
+  <ul>
   <li>the API will be using local port 3000 and the UI will be using local port 8000</li>
   </ul>
   <em><b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
