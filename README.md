@@ -1,5 +1,5 @@
 <h1>Software Developer Portfolio</h1>
-<p>Each folder in this repository contains a project showcasing my development skills. The projects were all completed as part of my Bachelor's in Computer Science coursework. Each project folder contains the assignment prompt for the project.</p>
+<p>Each folder in this repository contains a project showcasing my development skills. The projects were all completed as part of my Bachelor's in Computer Science coursework. Each project folder contains a PDF of the assignment prompt for the project.</p>
 <h2>exercise_tracking_app</h2>
 <ul>
   <li>uses the MERN stack to create a web-app </li>
