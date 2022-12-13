@@ -15,7 +15,7 @@
   </ol>
 <li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
 </ul>
-<h4>highlighted skills/technologies:</h4>
+<em>highlighted skills/technologies:</em>
 <ul>
   <li>python</li>
   <li>implementation of abstract data types</li>
