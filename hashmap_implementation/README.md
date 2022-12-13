@@ -7,12 +7,7 @@
   </ol>
 <li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
 </ul>
-<em>highlighted skills/technologies:</em>
-<ul>
-  <li>python</li>
-  <li>implementation of abstract data types</li>
-  <li>object-oriented programming</li>
-  </ul>
+<p><em>highlighted skills/technologies:</em> python, implementation of abstract data type, object-oriented programming</p>
 
 <b>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</b>
 
