@@ -14,8 +14,9 @@
 </ul>
 <h2>ludo_game</h2>
 <ul>
-<li>
-<li>highlighted skills/technologies: python, object-oriented programming
+<li>uses python to implement a representation of the game 'ludo'</li>
+<li>this project focused on cementing the fundamentals of object-oriented design</li>
+<li>highlighted skills/technologies: python, object-oriented design, documentation/clean code</li>
 </ul>
 <h2>primitives_macros</h2>
 <ul>
