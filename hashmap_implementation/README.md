@@ -6,10 +6,10 @@
   <li>using open-addressing collison resolution (hashmap_oa.py)</li>
   </ol>
 <li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
-  <h2>
+</ul>
+<h2>
     <b>highlighted skills/technologies:</b> python, efficient implementation of abstract data types, object-oriented programming
   </h2>
-</ul>
 
 <b><em>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
 
