@@ -5,5 +5,5 @@
 <li>highlighted skills/technologies: python, efficient implementation of abstract data types, object-oriented programming</li>
 </ul>
 
-<em>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em>
+<h2><em>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></h2>
 
