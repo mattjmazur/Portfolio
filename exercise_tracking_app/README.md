@@ -2,9 +2,16 @@
 <ul>
   <li>uses the MERN stack to create a web-app </li>
   <li>the web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
-  <li>highlighted skills/technologies: node.js, HTML, CSS, mongoDB, express.js, react</li>
 </ul>
- <em><b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
+<em>highlighted skills/technologies:</em>
+<ul>
+<li>node.js</li>
+<li>express.js</li>
+<li>react</li>
+<li>mongoDB<li>
+<li>HTML/CSS</li>
+</ul>
+ <b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</b>
 <br>
 <h2>How to run the project locally:</h2>
   <ol>
