@@ -5,7 +5,7 @@
   <li>using separate-chaining collision resolution (hashmap_sc.py)</li>
   <li>using open-addressing collison resolution (hashmap_oa.py)</li>
   </ol>
-<li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (PDF of prompt included in the folder)</li>
+<li>methods of each hashmap were written with time complexity constraints outlined in the assignment prompt (hashmap_assignment_prompt.pdf)</li>
 <li>highlighted skills/technologies: python, efficient implementation of abstract data types, object-oriented programming</li>
 </ul>
 
