@@ -4,7 +4,7 @@
   <li>the web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
   <li>highlighted skills/technologies: node.js, HTML, CSS, mongoDB, express.js, react</li>
 </ul>
-<ul>
+<br>
 <li>to run the project locally:</li>
   <ul>
   <li>after the files are downloaded run 'npm install' in the downloaded folder</li>
