@@ -14,5 +14,5 @@
   <li>object-oriented programming</li>
   </ul>
 
-<b><em>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
+<b>please see 'hashmap_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</b>
 
