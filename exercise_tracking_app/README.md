@@ -5,8 +5,7 @@
   <li>highlighted skills/technologies: node.js, HTML, CSS, mongoDB, express.js, react</li>
 </ul>
 <br>
-<ul>
-<li>to run the project locally:</li>
+<h2>How to run the project locally:</h2>
   <ul>
   <li>after the files are downloaded run 'npm install' in the downloaded folder</li>
   <ul>
@@ -15,5 +14,4 @@
   </ul>
   <li>the API will be using local port 3000 and the UI will be using local port 8000</li>
   </ul>
-  <li>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</li>
-</ul>
+  <em><b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</em></b>
