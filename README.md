@@ -6,7 +6,7 @@
   <li>the web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
 </ul>
 <small>
-<em>highlighted skills/technologies:</em>
+<h4>highlighted skills/technologies:</h4>
 <ul>
 <li>node.js</li>
 <li>express.js</li>
