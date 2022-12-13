@@ -8,7 +8,7 @@
 <li>node.js</li>
 <li>express.js</li>
 <li>react</li>
-<li>mongoDB<li>
+<li>mongoDB</li>
 <li>HTML, CSS</li>
 </ul>
  <b>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</b>
