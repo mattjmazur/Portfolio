@@ -8,6 +8,6 @@
   <li>run 'npm start' in the 'exercises_UI' folder</li>
   </ul>
   <li>the API will be using local port 3000 and the UI will be using local port 8000</li>
-   <li>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</li>
   </ul>
+  <li>please see 'exercise_tracking_app_assignment_prompt.pdf' for the assignment prompt used in the creation of this project</li>
 </ul>
