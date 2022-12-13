@@ -5,12 +5,7 @@
   <li>uses the MERN stack to create a web-app </li>
   <li>the web-app allows the user to track exercises by completing CRUD operations in an exercise-tracking table</li>
 </ul>
-<em>highlighted skills/technologies:</em><p>node.js, express.js, react, mongoDB, HTML/CSS</p>
-<li>node.js</li>
-<li>express.js</li>
-<li>react</li>
-<li>mongoDB</li>
-<li>HTML, CSS</li>
+<em>highlighted skills/technologies:</em>node.js, express.js, react, mongoDB, HTML/CSS
 
 <h2>hash_map_implementation</h2>
 <ul>
